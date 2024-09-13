@@ -13,11 +13,11 @@ import Navbar from "../components/Navbar";
 
 const Routs = () => {
   return (
-    <div className="px-4 sm:px-[7vw] lg:px-[9vw] ">
+    <div className="px-4 sm:px-[7vw] lg:px-[9vw] capitalize">
       <Navbar></Navbar>
 
       <Routes>
-        <Route path="'/" element={<Home></Home>}></Route>
+        <Route path="/" element={<Home></Home>}></Route>
         <Route path="/cart" element={<Cart></Cart>}></Route>
         <Route path="/order" element={<Order></Order>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
