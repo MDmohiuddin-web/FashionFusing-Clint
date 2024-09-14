@@ -1,10 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
-import logo_icon from "../assets/frontend_assets/logo.png";
-import search_icon from "../assets/frontend_assets/search_icon.png";
-import profile_icon from "../assets/frontend_assets/profile_icon.png";
-import cart_icon from "../assets/frontend_assets/cart_icon.png";
-import dropdown_icon from "../assets/frontend_assets/dropdown_icon.png";
-import menu_icon from "../assets/frontend_assets/menu_icon.png";
+import logo_icon from "../assets/logo.png";
+import search_icon from "../assets/search_icon.png";
+import profile_icon from "../assets/profile_icon.png";
+import cart_icon from "../assets/cart_icon.png";
+import dropdown_icon from "../assets/dropdown_icon.png";
+import menu_icon from "../assets/menu_icon.png";
 import { useState } from "react";
 
 const Navbar = () => {
@@ -12,12 +12,15 @@ const Navbar = () => {
 
   return (
     <div className="flex justify-between items-center py-5">
-      <img src={logo_icon} className="w-36" alt="" />
+      <Link to="/">
+        <img src={logo_icon} className="w-36" alt="" />
+      </Link>
+
       {/* for navigation */}
       <ul className="hidden sm:flex gap-5 text-sm text-gray-700">
         <li>
           <NavLink to="/" className="flex flex-col items-center gap-1">
-            Home{" "}
+            Home
             <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden duration-300" />
           </NavLink>
         </li>
@@ -26,19 +29,19 @@ const Navbar = () => {
             to="/collection"
             className="flex flex-col items-center gap-1"
           >
-            Collection{" "}
+            Collection
             <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden duration-300" />
           </NavLink>
         </li>
         <li>
           <NavLink to="/about" className="flex flex-col items-center gap-1">
-            About{" "}
+            About
             <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden duration-300" />
           </NavLink>
         </li>
         <li>
           <NavLink to="/contact" className="flex flex-col items-center gap-1">
-            Contact{" "}
+            Contact
             <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden duration-300" />
           </NavLink>
         </li>
@@ -92,10 +95,34 @@ const Navbar = () => {
             <p>back</p>
           </div>
           {/* for navlink */}
-          <NavLink className='py-2 pl-6 border' onClick={()=>setvisible(false)} to="/">Home</NavLink>
-          <NavLink className='py-2 pl-6 border' onClick={()=>setvisible(false)} to="/collection">collection</NavLink>
-          <NavLink className='py-2 pl-6 border' onClick={()=>setvisible(false)} to="/about">about</NavLink>
-          <NavLink className='py-2 pl-6 border' onClick={()=>setvisible(false)} to="/contact">contact</NavLink>
+          <NavLink
+            className="py-2 pl-6 border"
+            onClick={() => setvisible(false)}
+            to="/"
+          >
+            Home
+          </NavLink>
+          <NavLink
+            className="py-2 pl-6 border"
+            onClick={() => setvisible(false)}
+            to="/collection"
+          >
+            collection
+          </NavLink>
+          <NavLink
+            className="py-2 pl-6 border"
+            onClick={() => setvisible(false)}
+            to="/about"
+          >
+            about
+          </NavLink>
+          <NavLink
+            className="py-2 pl-6 border"
+            onClick={() => setvisible(false)}
+            to="/contact"
+          >
+            contact
+          </NavLink>
         </div>
       </div>
     </div>

@@ -3,11 +3,15 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import Routs from "./Routs/Routs";
+import ShopContextProvider from "./context/ShopContext";
+
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-    <Routs></Routs>
+      <ShopContextProvider>
+        <Routs></Routs>
+      </ShopContextProvider>
     </BrowserRouter>
   </StrictMode>
 );
