@@ -10,6 +10,7 @@ import Login from "../pages/Login";
 import Contact from "../pages/Contact";
 import About from "../pages/About";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Routs = () => {
   return (
@@ -29,6 +30,7 @@ const Routs = () => {
         <Route path="/collection" element={<Collection></Collection>}></Route>
         <Route path="/placeorder" element={<PlaceOrder></PlaceOrder>}></Route>
       </Routes>
+      <Footer></Footer>
     </div>
   );
 };
