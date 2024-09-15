@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 
 const ProductItems = ({id,image,name,price}) => {
-    console.log(id)
+    // console.log(id)
     const {currency}=useContext(ShopContext);
     return (
         <Link to={`/product/${id}`} className="text-gray-700 cursor-pointer" > 
