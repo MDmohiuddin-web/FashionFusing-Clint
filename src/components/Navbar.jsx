@@ -5,10 +5,12 @@ import profile_icon from "../assets/profile_icon.png";
 import cart_icon from "../assets/cart_icon.png";
 import dropdown_icon from "../assets/dropdown_icon.png";
 import menu_icon from "../assets/menu_icon.png";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ShopContext } from "../context/ShopContext";
 
 const Navbar = () => {
   const [visible, setvisible] = useState(false);
+  const {setShowSearch} = useContext(ShopContext)
 
   return (
     <div className="flex justify-between items-center py-5">
@@ -48,7 +50,7 @@ const Navbar = () => {
       </ul>
 
       <div className="flex items-center gap-6">
-        <img src={search_icon} className="w-5 cursor-pointer" alt="" />
+        <img src={search_icon} onClick={()=>setShowSearch(true)} className="w-5 cursor-pointer" alt="" />
 
         <div className="group relative">
           <img src={profile_icon} className="w-5 cursor-pointer" alt="" />
