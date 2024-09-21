@@ -6,20 +6,18 @@ import RelatedProduct from "../components/RelatedProduct";
 
 const Product = () => {
   const { productId } = useParams();
-  console.log(productId);
-  const { products, currency } = useContext(ShopContext);
+  // console.log(productId);
+  const { products, currency,addToCart } = useContext(ShopContext);
   const [ProductData, setProductData] = useState(false);
-
-  const [quantity, setQuantity] = useState("");
-
   const [image, setImage] = useState("");
+  const [size, setSize] = useState("");
 
   const fetchProduct = async () => {
     products.map((item) => {
       if (item._id === productId) {
         setProductData(item);
         setImage(item.image[0]);
-        console.log(item);
+        // console.log(item);
         return null;
       }
     });
@@ -77,10 +75,10 @@ const Product = () => {
               {ProductData?.sizes.map((item, index) => {
                 return (
                   <button
-                    onClick={() => setQuantity(item)}
+                    onClick={() => setSize(item)}
                     key={index}
                     className={`border py-2 px-4 bg-gray-100 rounded ${
-                      item === quantity ? "border-orange-500" : ""
+                      item === size ? "border-orange-500" : ""
                     }`}
                   >
                     {item}
@@ -89,7 +87,8 @@ const Product = () => {
               })}
             </div>
           </div>
-          <button className="bg-black text-white rounded py-3 text-sm active:bg-gray-700 px-8">
+          <button
+          onClick={()=>addToCart(ProductData._id,size)} className="bg-black text-white rounded py-3 text-sm active:bg-gray-700 px-8">
             ADD TO CART
           </button>
           <hr className="mt-8 sm:w-4/5" />
