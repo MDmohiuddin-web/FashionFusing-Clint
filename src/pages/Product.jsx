@@ -7,7 +7,7 @@ import RelatedProduct from "../components/RelatedProduct";
 const Product = () => {
   const { productId } = useParams();
   // console.log(productId);
-  const { products, currency,addToCart } = useContext(ShopContext);
+  const { products, currency, addToCart } = useContext(ShopContext);
   const [ProductData, setProductData] = useState(false);
   const [image, setImage] = useState("");
   const [size, setSize] = useState("");
@@ -78,7 +78,7 @@ const Product = () => {
                     onClick={() => setSize(item)}
                     key={index}
                     className={`border py-2 px-4 bg-gray-100 rounded ${
-                      item === size ? "border-orange-500" : ""
+                      item === size ? "border-black" : ""
                     }`}
                   >
                     {item}
@@ -87,8 +87,23 @@ const Product = () => {
               })}
             </div>
           </div>
+
+          {/* <button
+            disabled={size === ""}
+            onClick={() => addToCart(ProductData._id, size)}
+            className={`bg-black text-white rounded py-3 text-sm px-8 ${
+              size !== "" ? "active:bg-gray-700" : ""
+            }`}
+          >
+            ADD TO CART
+          </button> */}
+
+          {/*  */}
+
           <button
-          onClick={()=>addToCart(ProductData._id,size)} className="bg-black text-white rounded py-3 text-sm active:bg-gray-700 px-8">
+            onClick={() => addToCart(ProductData._id, size)}
+            className="bg-black text-white rounded py-3 text-sm active:bg-gray-700 px-8"
+          >
             ADD TO CART
           </button>
           <hr className="mt-8 sm:w-4/5" />
@@ -126,9 +141,11 @@ const Product = () => {
         </div>
       </div>
 
-{/* display RELATED PRODUCTS */}
-<RelatedProduct category={ProductData.category} subcategory={ProductData.subcategory}></RelatedProduct>
-
+      {/* display RELATED PRODUCTS */}
+      <RelatedProduct
+        category={ProductData.category}
+        subcategory={ProductData.subcategory}
+      ></RelatedProduct>
     </div>
   ) : (
     <div className="opacity-0"></div>

@@ -12,6 +12,7 @@ import About from "../pages/About";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import SearchBar from "../components/SearchBar";
+import { Toaster } from "react-hot-toast";
 
 const Routs = () => {
   return (
@@ -33,6 +34,7 @@ const Routs = () => {
         <Route path="/placeorder" element={<PlaceOrder></PlaceOrder>}></Route>
       </Routes>
       <Footer></Footer>
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 };
