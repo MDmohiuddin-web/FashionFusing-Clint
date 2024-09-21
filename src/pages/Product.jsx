@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 import { useContext, useEffect, useState } from "react";
 import { assets } from "../assets/assets";
+import RelatedProduct from "../components/RelatedProduct";
 
 const Product = () => {
   const { productId } = useParams();
@@ -9,11 +10,9 @@ const Product = () => {
   const { products, currency } = useContext(ShopContext);
   const [ProductData, setProductData] = useState(false);
 
-  const [quantity, setQuantity] = useState('');
+  const [quantity, setQuantity] = useState("");
 
   const [image, setImage] = useState("");
-
-
 
   const fetchProduct = async () => {
     products.map((item) => {
@@ -49,7 +48,7 @@ const Product = () => {
             })}
           </div>
           <div className="w-full sm:w-[80%] ">
-            <img src={image} alt="" className="w-full h-auto" />
+            <img src={image} alt="" className="w-full h-auto " />
           </div>
         </div>
         {/* for product information */}
@@ -77,9 +76,12 @@ const Product = () => {
             <div className="flex gap-2">
               {ProductData?.sizes.map((item, index) => {
                 return (
-                  <button onClick={() => setQuantity(item)}
+                  <button
+                    onClick={() => setQuantity(item)}
                     key={index}
-                    className={`border py-2 px-4 bg-gray-100 rounded ${item === quantity ? "border-orange-500" : ""}`}
+                    className={`border py-2 px-4 bg-gray-100 rounded ${
+                      item === quantity ? "border-orange-500" : ""
+                    }`}
                   >
                     {item}
                   </button>
@@ -87,8 +89,47 @@ const Product = () => {
               })}
             </div>
           </div>
+          <button className="bg-black text-white rounded py-3 text-sm active:bg-gray-700 px-8">
+            ADD TO CART
+          </button>
+          <hr className="mt-8 sm:w-4/5" />
+          <div className="text-sm text-gray-500 mt-5 flex flex-col gap-1">
+            <p>100% Original product.</p>
+            <p>Cash on delivery is available on this product.</p>
+            <p>Easy return and exchange policy within 7 days.</p>
+          </div>
         </div>
       </div>
+      {/* for product description && product review */}
+      <div className="mt-20">
+        <div className="flex">
+          <p className="border px-5 py-3 text-sm ">Description</p>
+          <p className="border px-5 py-3 text-sm ">Reviews (122)</p>
+        </div>
+
+        <div className="flex flex-col gap-4 border p-6 text-sm text-gray-500 ">
+          <p>
+            An e-commerce website is an online platform that facilitates the
+            buying and selling of products or services over the internet. It
+            serves as a virtual marketplace where businesses and individuals can
+            showcase their products, interact with customers, and conduct
+            transactions without the need for a physical presence. E-commerce
+            websites have gained immense popularity due to their convenience,
+            accessibility, and the global reach they offer.
+          </p>
+
+          <p>
+            E-commerce websites typically display products or services along
+            with detailed descriptions, images, prices, and any available
+            variations (e.g., sizes, colors). Each product usually has its own
+            dedicated page with relevant information.
+          </p>
+        </div>
+      </div>
+
+{/* display RELATED PRODUCTS */}
+<RelatedProduct category={ProductData.category} subcategory={ProductData.subcategory}></RelatedProduct>
+
     </div>
   ) : (
     <div className="opacity-0"></div>
