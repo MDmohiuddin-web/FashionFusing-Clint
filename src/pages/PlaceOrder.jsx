@@ -1,3 +1,4 @@
+import CartTotal from "../components/CartTotal";
 import Title from "../components/Title";
 
 const PlaceOrder = () => {
@@ -81,6 +82,24 @@ const PlaceOrder = () => {
         />
         {/* <input type="submit" value="Continue" className="bg-black text-white px-3.5 py-1.5 w-full rounded border-gray-300 border" /> */}
       </div>
+      {/* right side */}
+      <div className="mt-8">
+        <div className="mt-8 min-w-80">
+            <CartTotal></CartTotal>
+        </div>
+        <div className="mt-12">
+            <Title text1={"PAYMENT"} text2={"METHOD"}></Title>
+            {/* this is for payment method */}
+            <div className="flex gap-3 flex-col lg:flex-row">
+                
+
+            </div>
+        </div>
+      </div>
+
+
+
+
     </div>
   );
 };
