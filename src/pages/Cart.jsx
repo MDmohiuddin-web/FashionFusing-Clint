@@ -1,9 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import Title from "../components/Title";
+import { assets } from "../assets/assets";
+import CartTotal from "../components/CartTotal";
 
 const Cart = () => {
-  const { cartItems, currency, products } = useContext(ShopContext);
+  const { cartItems, currency, products, updateQuantity } =
+    useContext(ShopContext);
 
   const [cartData, setCartData] = useState([]);
 
@@ -50,29 +53,66 @@ const Cart = () => {
         <Title text1={"YOUR"} text2={"CART"}></Title>
       </div>
       <div>
-        {
-            cartData.map((item) => {
-                const product = products.find((product) => product._id === item._id);
-                return (
-                    <div key={item._id} className="flex justify-between items-center">
-                        <div className="flex items-center">
-                            <img src={product.image} alt={product.name} className="w-20 h-20 object-cover mr-4" />
-                            <div>
-                                <p className="text-lg font-semibold">{product.name}</p>
-                                <p className="text-gray-600">Size: {item.size}</p>
-                                <p className="text-gray-600">Quantity: {item.quantity}</p>
-                            </div>
-                        </div>
-                        <div className="text-right">
-                            <p className="text-lg font-semibold">
-                                {currency}
-                                {product.price * item.quantity}
-                            </p>
-                        </div>
-                    </div>
-                );
-            })
-        }
+        {cartData.map((item, index) => {
+          const productData = products.find(
+            (product) => product._id === item._id
+          );
+          return (
+            <div
+              key={index}
+              className="py-4 border-t border-b text-gray-700 grid grid-cols-[4fr_0.5fr_0.5fr] sm:grid-cols-[4fr_2fr_0.5fr] items-center gap-4"
+            >
+              <div className="flex items-start gap-6">
+                <img
+                  src={productData.image[0]}
+                  alt=""
+                  className="w-16 sm:w-20"
+                />
+                <div className="text-xs sm:text-lg font-medium">
+                  <p>{productData.name}</p>
+                  <div className="flex items-center gap-5 mt-2">
+                    <p>
+                      {currency}
+                      {productData.price}
+                    </p>
+                    <p className="px-2 sm:px-3 sm:py-1 border bg-slate-50">
+                      {item.size}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <input
+                type="number"
+                onChange={(e) =>
+                  e.target.value === "" || e.target.value === "0"
+                    ? null
+                    : updateQuantity(
+                        item._id,
+                        item.size,
+                        Number(e.target.value)
+                      )
+                }
+                min={1}
+                defaultValue={item.quantity}
+                className="border max-w-20 px-1 sm:px-2 py-1"
+                name=""
+                id=""
+              />
+              <img
+                onClick={() => updateQuantity(item._id, item.size, 0)}
+                src={assets.bin_icon}
+                className="w-4 mr-4 sm:w-5 cursor-pointer "
+                alt=""
+              />
+            </div>
+          );
+        })}
+      </div>
+      <div className="flex justify-end my-20">
+        <div className="w-full sm:w-[450]">
+          <CartTotal></CartTotal>
+        </div>
+
       </div>
     </div>
   );

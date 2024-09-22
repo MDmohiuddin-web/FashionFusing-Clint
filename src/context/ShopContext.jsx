@@ -6,7 +6,7 @@ export const ShopContext = createContext();
 
 const ShopContextProvider = ({ children }) => {
   const currency = "$";
-  const deliveryFee = 10;
+  const delivery_Fee = 10;
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
 
@@ -40,31 +40,16 @@ const ShopContextProvider = ({ children }) => {
     setCartItems(cartData);
   };
 
-  const removeFromCart = (itemId, size) => {
+  const updateQuantity = (itemId, size, quantity) => {
     let cartData = structuredClone(cartItems);
-    if (cartData[itemId][size] > 1) {
-      cartData[itemId][size] -= 1;
-    } else {
-      delete cartData[itemId][size];
-    }
+    cartData[itemId][size] = quantity;
+    // toast.success(
+    //   `${products.find((item) => item._id === itemId).name} cart updated`
+    // );
+
     setCartItems(cartData);
   };
 
-  // const getCartCount = () => {
-  //   let count = 0;
-  //   for (const items in cartItems) {
-  //     for (const item in cartItems[items]) {
-  //       try {
-  //         if (cartItems[item][items] > 0) {
-  //           count += cartItems[items][item];
-  //         }
-  //       } catch (err) {
-  //         console.log(err);
-  //       }
-  //     }
-  //   }
-  //   return count;
-  // };
   const getCartCount = () => {
     let count = 0;
     for (const items of Object.values(cartItems)) {
@@ -80,14 +65,34 @@ const ShopContextProvider = ({ children }) => {
     }
     return count;
   };
-  
+
+
+  const GetCartAmount = () => {
+    let totalAmount = 0;
+    for (const items of Object.values(cartItems)) {
+      let iteminfo = products.find((item) => item._id === items);
+      if (iteminfo) {
+        for (const item in cartItems[items]) {
+          try {
+            if (cartItems[items][item] > 0) {
+              totalAmount += iteminfo.price * cartItems[items][item];
+            }
+          } catch (err) {
+            console.log(err);
+          }
+        }
+      }
+    }
+    return totalAmount;
+  };
+
   useEffect(() => {
     console.log(cartItems);
   }, [cartItems]);
 
   const value = {
     products,
-    deliveryFee,
+    delivery_Fee,
     currency,
     setSearch,
     search,
@@ -96,7 +101,8 @@ const ShopContextProvider = ({ children }) => {
     cartItems,
     addToCart,
     getCartCount,
-    removeFromCart,
+    updateQuantity,
+    GetCartAmount,
   };
 
   return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;
