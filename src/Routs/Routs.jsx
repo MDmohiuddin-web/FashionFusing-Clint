@@ -31,7 +31,7 @@ const Routs = () => {
         <Route path="/register" element={<Register></Register>}></Route>
         {/* <Route path="/profile" element={<Profile></Profile>}></Route> */}
         <Route path="/collection" element={<Collection></Collection>}></Route>
-        <Route path="/placeorder" element={<PlaceOrder></PlaceOrder>}></Route>
+        <Route path="/place-order" element={<PlaceOrder></PlaceOrder>}></Route>
       </Routes>
       <Footer></Footer>
       <Toaster position="top-center" reverseOrder={false} />

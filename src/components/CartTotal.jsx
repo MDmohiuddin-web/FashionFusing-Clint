@@ -22,7 +22,7 @@ const CartTotal = () => {
           <p>shipping fee</p>
           <p>
             {currency}
-            {delivery_Fee}
+            {delivery_Fee}.00
           </p>
         </div>
         <hr />

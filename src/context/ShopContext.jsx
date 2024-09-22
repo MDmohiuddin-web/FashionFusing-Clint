@@ -69,13 +69,13 @@ const ShopContextProvider = ({ children }) => {
 
   const GetCartAmount = () => {
     let totalAmount = 0;
-    for (const items of Object.values(cartItems)) {
-      let iteminfo = products.find((item) => item._id === items);
-      if (iteminfo) {
-        for (const item in cartItems[items]) {
+    for (const itemId in cartItems) {
+      let itemInfo = products.find((item) => item._id === itemId);
+      if (itemInfo) {
+        for (const size in cartItems[itemId]) {
           try {
-            if (cartItems[items][item] > 0) {
-              totalAmount += iteminfo.price * cartItems[items][item];
+            if (cartItems[itemId][size] > 0) {
+              totalAmount += itemInfo.price * cartItems[itemId][size];
             }
           } catch (err) {
             console.log(err);
@@ -85,6 +85,7 @@ const ShopContextProvider = ({ children }) => {
     }
     return totalAmount;
   };
+  
 
   useEffect(() => {
     console.log(cartItems);

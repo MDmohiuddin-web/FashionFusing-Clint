@@ -3,6 +3,7 @@ import { ShopContext } from "../context/ShopContext";
 import Title from "../components/Title";
 import { assets } from "../assets/assets";
 import CartTotal from "../components/CartTotal";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const { cartItems, currency, products, updateQuantity } =
@@ -111,6 +112,10 @@ const Cart = () => {
       <div className="flex justify-end my-20">
         <div className="w-full sm:w-[450]">
           <CartTotal></CartTotal>
+          <div className="w-full md:text-end mt-10 text-center">
+            <Link to='/place-order'  className="bg-black text-white rounded py-3 text-sm active:bg-gray-700 px-8">PROCEED TO CHECKOUT</Link>
+
+          </div>
         </div>
 
       </div>
