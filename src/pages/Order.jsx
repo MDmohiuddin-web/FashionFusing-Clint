@@ -1,11 +1,51 @@
-
+import { useContext } from "react";
+import { ShopContext } from "../context/ShopContext";
+import Title from "../components/Title";
+import { Link } from "react-router-dom";
 
 const Order = () => {
-    return (
-        <div>
-            <h4>this is Order page</h4>
-        </div>
-    );
+  const { products, currency } = useContext(ShopContext);
+
+  return (
+    <div className="border-t pt-16">
+      <div className="text-2xl">
+        <Title text1={"MY"} text2={"ORDERS"}></Title>
+      </div>
+      <div>
+        {products.slice(0, 4).map((item, index) => (
+          <div
+            key={index}
+            className="border-t border-b text-gray-700 flex flex-row md:items-center justify-between gap-4"
+          >
+            <div className="flex items-start gap-6 text-sm py-2">
+              <img src={item.image[0]} alt="" className="w-16 sm:w-20 " />
+              <div>
+                <p className="sm:text-base font-medium">{item.name}</p>
+                <div className="flex items-center gap-3 mt-2 text-base to-gray-700">
+                  <p>
+                    {currency} {item.price}
+                  </p>
+                  <p>Quantity : 1</p>
+                  <p>Size : M</p>
+                </div>
+                <p className="mt-2">
+                  {" "}
+                  Date : <span className="text-gray-400">25.09.24</span>
+                </p>
+              </div>
+            </div>
+            <div className="md:w-1/2 flex justify-between">
+              <div className="flex items-center gap-2">
+                <p className="min-w-2 h-2 rounded-full bg-green-500"></p>
+                <p className="text-sm md:text-base"> Ready To Ship</p>
+              </div>
+              <Link className="border px-4 py-2 text-sm font-medium rounded-sm"> Track Order</Link>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default Order;

@@ -93,8 +93,8 @@ const ShopContextProvider = ({ children }) => {
 
   const value = {
     products,
-    delivery_Fee,
     currency,
+    delivery_Fee,
     setSearch,
     search,
     showSearch,
